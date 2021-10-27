@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <f:facet name="first">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+    </f:facet>
+    <title>Login</title>
+    <ui:insert name="head" />
+</h:head>
+
+<h:body style="background-color: #90A4AE">
+
+    <div class="Container100">
+
+        <div class="EmptyBox50"></div>
+
+        <div class="Wid90 MarAuto">
+
+            <div class="Wid30 DispBlock MarAuto WidAutoOnMobile">
+                <div  class="Card TexAlCenter" style="background-color: #4c626d">
+                    <!-- <h:graphicImage name="images/logo.svg" library="adamantium-layout" style="max-width:180px;"/> -->
+                    <!-- <div class="SeparatorFull"></div> -->
+
+                    <div class="Wid100 OvHidden BigTopic"><i class="icon-security DispBlock"></i><font size="6" color="white">  Realize o seu Login </font></div>
+                    <div class="EmptyBox20"></div>
+                    <div style="background-color: #2b2b2b" class="Card SoftGrayBack">
+                        <h:form>
+                            <p:inputText
+                                    value="#{loginControle.usuario.login}"
+                                    placeholder="Login"
+                                    styleClass="Wid90 TexAlCenter"
+                                    required="true"
+                                    requiredMessage="Digite seu login."
+                            />
+                            <div class="EmptyBox10"></div>
+                            <p:inputText
+                                    value="#{loginControle.usuario.senha}"
+                                    type="password"
+                                    placeholder="Senha"
+                                    styleClass="Wid90 TexAlCenter"
+                                    required="true"
+                                    requiredMessage="Digite sua senha."
+                            />
+                            <div class="EmptyBox30"></div>
+                            <p:commandButton style="background-color: #1c75bc" value="Logar" icon="fa fa-sign-in" action="#{loginControle.logar()}" ajax="false" styleClass="CyanButton"/>
+                        </h:form>
+
+                    </div>
+                    <p:messages/>
+                </div>
+            </div>
+        </div>
+
+        <div class="EmptyBox10"></div>
+    </div>
+
+    <h:outputStylesheet name="css/core-layout.css" library="adamantium-layout" />
+    <h:outputStylesheet name="css/animate.css" library="adamantium-layout" />
+    <h:outputStylesheet name="css/adamantium-font.css" library="adamantium-layout" />
+    <h:outputStylesheet name="css/ripple-effect.css" library="adamantium-layout" />
+    <h:outputStylesheet name="css/font-awesome.css" library="adamantium-layout" />
+    <h:outputStylesheet name="css/adamantium-layout.css" library="adamantium-layout" />
+</h:body>
+
+</html>

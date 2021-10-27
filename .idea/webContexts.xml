@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebContextManager">
+    <option name="state">
+      <map>
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/ajusteestoque/ajusteestoquelista.xhtml" value="file://$PROJECT_DIR$/src/main/webapp/ajusteestoque" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/ajusteestoque/editaAjusteEstoque.xhtml" value="file://$PROJECT_DIR$/src/main/webapp/ajusteestoque" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/cidade/cidadeedita.xhtml" value="file://$PROJECT_DIR$/src/main/webapp/cidade" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/compra/compraedita.xhtml" value="file://$PROJECT_DIR$/src/main/webapp/compra" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/compra/compralista.xhtml" value="file://$PROJECT_DIR$/src/main/webapp/compra" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/contabancaria/contabancarialista.xhtml" value="file://$PROJECT_DIR$/src/main/webapp/contabancaria" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/contaspagar/baixacontaspagar.xhtml" value="file://$PROJECT_DIR$/src/main/webapp/contaspagar" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/contaspagar/contaspagaredita.xhtml" value="file://$PROJECT_DIR$/src/main/webapp/contaspagar" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/contaspagar/contaspagarlista.xhtml" value="file://$PROJECT_DIR$/src/main/webapp/contaspagar" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/contasreceber/contasreceberedita.xhtml" value="file://$PROJECT_DIR$/src/main/webapp/contasreceber" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/contasreceber/contasreceberlista.xhtml" value="file://$PROJECT_DIR$/src/main/webapp/contasreceber" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/estado/estadolista.xhtml" value="file://$PROJECT_DIR$/src/main/webapp/estado" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/index.xhtml" value="file://$PROJECT_DIR$/src/main/webapp" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/login.xhtml" value="file://$PROJECT_DIR$/src/main/webapp" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/relatorios/relmovimentacaodiaria.xhtml" value="file://$PROJECT_DIR$/src/main/webapp/relatorios" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/venda/vendaedita.xhtml" value="file://$PROJECT_DIR$/src/main/webapp/venda" />
+      </map>
+    </option>
+  </component>
+</project>

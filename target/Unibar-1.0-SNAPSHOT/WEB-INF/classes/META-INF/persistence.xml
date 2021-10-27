@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence                                   http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+  <persistence-unit name="UnibarPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.hibernate.ejb.HibernatePersistence</provider>
+    <class>entidades.AjusteEstoque</class>
+    <class>entidades.BaixaContasPagar</class>
+    <class>entidades.BaixaContasReceber</class>
+    <class>entidades.Cidade</class>
+    <class>entidades.Compra</class>
+    <class>entidades.ContaBancaria</class>
+    <class>entidades.ContasPagar</class>
+    <class>entidades.ContasReceber</class>
+    <class>entidades.Estado</class>
+    <class>entidades.FormaPagamento</class>
+    <class>entidades.Funcionario</class>
+    <class>entidades.GrupoProduto</class>
+    <class>entidades.ItensAjusteEstoque</class>
+    <class>entidades.ItensCompra</class>
+    <class>entidades.ItensVenda</class>
+    <class>entidades.Mesa</class>
+    <class>entidades.Perfil</class>
+    <class>entidades.Permissoes</class>
+    <class>entidades.Cliente</class>
+    <class>entidades.Pessoa</class>
+    <class>entidades.PessoaFisica</class>
+    <class>entidades.PessoaJuridica</class>
+    <class>entidades.Produto</class>
+    <class>entidades.StatusCompra</class>
+    <class>entidades.StatusContasPagar</class>
+    <class>entidades.StatusContasReceber</class>
+    <class>entidades.StatusVenda</class>
+    <class>entidades.Usuario</class>
+    <class>entidades.Venda</class>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/unibar"/>
+      <property name="javax.persistence.jdbc.user" value="root"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.password" value="junior457"/>
+      <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+      <property name="hibernate.show_sql" value="false"/>
+      <property name="hibernate.format_sql" value="true"/>
+      <property name="hibernate.hbm2ddl.auto" value="update"/>
+    </properties>
+  </persistence-unit>
+</persistence>

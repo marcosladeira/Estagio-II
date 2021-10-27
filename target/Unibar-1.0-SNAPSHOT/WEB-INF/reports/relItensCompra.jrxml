@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relItensCompra" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ac7c999a-6117-4175-8cd4-9bec2c2fc2c6">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="378"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="609"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MySQL"/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w1" value="946"/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w2" value="40"/>
+	<parameter name="compraId" class="java.lang.Long"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+`ItensCompra`.id as itenscompra_id,
+    `ItensCompra`.compra_id AS compra_id,
+  `Produto`.nome AS Produto,
+	`ItensCompra`.quantidade AS quantidade,
+	`ItensCompra`.valor AS valor,
+	ItensCompra.valor * ItensCompra.quantidade AS subtotal
+FROM `Produto`
+	INNER JOIN `ItensCompra` ON 
+	 `Produto`.id = `ItensCompra`.`Produto_id`
+	  where  
+	  `ItensCompra`.compra_id = $P{compraId}]]>
+	</queryString>
+	<field name="Produto" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Produto"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Produto"/>
+	</field>
+	<field name="quantidade" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="quantidade"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="ItensCompra"/>
+	</field>
+	<field name="valor" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="valor"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="ItensCompra"/>
+	</field>
+	<field name="subtotal" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="subtotal"/>
+	</field>
+	<background>
+		<band/>
+	</background>
+	<detail>
+		<band height="20">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="55eec7eb-614c-45ee-9f56-7ce70c43cc67"/>
+			</line>
+			<textField textAdjust="StretchHeight">
+				<reportElement x="0" y="0" width="138" height="20" uuid="ab637c44-0fbf-4b2e-a72c-d267622daea9">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="86bd359e-12d6-4dc7-b7db-368334e6e921"/>
+				</reportElement>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Produto}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight">
+				<reportElement x="138" y="0" width="138" height="20" uuid="0bb1867c-03f6-4777-8807-7a300011fb84">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="24f5a9d6-4971-489f-a5ba-ff049f282e9d"/>
+				</reportElement>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{quantidade}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight">
+				<reportElement x="276" y="0" width="138" height="20" uuid="296446e0-2faf-4989-8869-9e28d3220326">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="361587c0-6b73-4d7c-a54d-78abe56cd6a2"/>
+				</reportElement>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valor}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight">
+				<reportElement x="414" y="0" width="138" height="20" uuid="4bcc8c26-a066-4a89-b005-c4e12fb3f444">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="969bf20e-52b5-4099-a285-ac38736c6af4"/>
+				</reportElement>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{subtotal}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

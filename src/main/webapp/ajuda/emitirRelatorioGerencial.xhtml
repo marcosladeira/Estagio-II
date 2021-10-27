@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<ui:composition template="/index.xhtml">
+    <ui:define name="body">
+        <div id="tudo">
+            <h1>Como emitir um relatório gerencial.</h1>
+
+            <p>1. Para realizar uma emissão de um relatório gerencial, será necessário abrir o menu, ir na opção de Relatórios e, em seguida, escolher a opção Relatório Gerenciais e clicar em alguma opção de relatório à sua escolha, conforme ilustra a figura abaixo, que mostra a escolha por relatório de produtos mais vendidos.</p>
+            <h:graphicImage library="images" name="EmitirRelatorioGerencial1.jpg" width="1300" height="350"/>
+
+            <p>2. Após clicar clicar em alguma opção de relatório, será apresentado para o usuário a tela de geração do relatório escolhido, contendo um botão de geração do mesmo e, caso o relatório escolhido seja por período, ou seja, por datas, irá conter campos para preenchimentos das datas. Para emitir o relatório, clique no botão Gerar Relatório, conforme ilustra a figura abaixo, que mostra um botão de Gerar Relatório de Produtos mais vendidos.</p>
+            <h:graphicImage library="images" name="EmitirRelatorioGerencial2.jpg" width="1300" height="400"/>
+
+            <p>3. E, por fim, após clicar no botão gerar relatório, será aberto uma nova guia no navegador, mostrando, em formato PDF, todas as informações gerenciadas no sistema por um determinado período, conforme ilustra a figura abaixo, que mostra os produtos mais vendidos por um determinado período.</p>
+            <h:graphicImage library="images" name="EmitirRelatorioGerencial3.jpg" width="1300" height="700"/>
+        </div>
+    </ui:define>
+</ui:composition>
+
+</html>

@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<ui:composition template="/index.xhtml">
+    <ui:define name="body">
+        <h1 align="center">Cadastro de Cliente</h1>
+        <h:form>
+            <p:dataTable value="#{clienteControle.lista}" var="obj"
+                         paginator="true" rows="5"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="2,5,10,15"
+            >
+                <p:column headerText="Código" filterBy="#{obj.id}" filterMatchMode="contains">
+                    <h:outputText value="#{obj.id}"/>
+                </p:column>
+                <p:column headerText="Nome" filterBy="#{obj.nome}" filterMatchMode="contains">
+                    <h:outputText value="#{obj.nome}"/>
+                </p:column>
+                <p:column headerText="Endereço" filterBy="#{obj.endereco}" filterMatchMode="contains">
+                    <h:outputText value="#{obj.endereco}"/>
+                </p:column>
+                <p:column headerText="Telefone" filterBy="#{obj.telefone}" filterMatchMode="contains">
+                    <h:outputText value="#{obj.telefone}"/>
+                </p:column>
+                <p:column headerText="Idade" filterBy="#{obj.idade}" filterMatchMode="contains">
+                    <h:outputText value="#{obj.idade}"/>
+                </p:column>
+                <p:column headerText="Operações" width="100">
+                    <p:commandButton icon="ui-icon-closethick"
+                                     ajax="false"
+                                     immediate="true"
+                                     action="clientelista.xhtml"
+                                     actionListener="#{clienteControle.excluir(obj)}"/>
+                    <p:commandButton icon="ui-icon-pencil"
+                                     ajax="false"
+                                     immediate="true"
+                                     action="clienteedita.xhtml"
+                                     actionListener="#{clienteControle.editar(obj)}"/>
+                </p:column>
+            </p:dataTable>
+            <p:commandButton style="background-color: #1c75bc"  value="Novo cliente" action="clienteedita"
+                             actionListener="#{clienteControle.novo()}" ajax="false"/>
+            <p:commandButton style="background-color: #FFFFFF" value="Voltar" immediate="true" action="/index.xhtml" ajax="false"/>
+        </h:form>
+    </ui:define>
+</ui:composition>
+</html>

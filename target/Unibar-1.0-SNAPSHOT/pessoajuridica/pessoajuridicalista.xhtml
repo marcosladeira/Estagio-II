@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<ui:composition template="/index.xhtml">
+    <ui:define name="body">
+        <h3 align="center">Cadastro de Pessoa Jurídica</h3>
+        <h:form id="mensage">
+            <p:dataTable value="#{pessoaJuridicaControle.listaTodos()}" var="p"
+                         paginator="true" rows="5">
+                <p:column headerText="Código" filterBy="#{p.id}" filterMatchMode="contains">
+                    #{p.id}
+                </p:column>
+                <p:column headerText="Nome" filterBy="#{p.nome}" filterMatchMode="contains">
+                    #{p.nome}
+                </p:column>
+                <p:column headerText="CNPJ" filterBy="#{p.cnpj}" filterMatchMode="contains">
+                    #{p.cnpj}
+                </p:column>
+                <p:column headerText="Cidade" filterBy="#{p.cidade.nome}" filterMatchMode="contains">
+                    #{p.cidade.nome}
+                </p:column>
+                <p:column headerText="Operações">
+
+                    <p:commandButton icon="ui-icon-closethick" actionListener="#{pessoaJuridicaControle.excluir(p)}" update="mensage" immediate="true" >
+                        <p:confirm header="Confirmação" message="Deseja excluir?" icon="ui-icon-alert" />
+                    </p:commandButton>
+                    <p:confirmDialog global="true" widgetVar="dlg3" height="" style="background-position:center ">
+                        <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"  ajax="false" />
+                        <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" ajax="true"/>
+                    </p:confirmDialog>
+
+                    <p:commandButton icon="ui-icon-pencil"
+                                     actionListener="#{pessoaJuridicaControle.editar(p)}"
+                                     ajax="false"
+                                     immediate="true"
+                                     action="pessoajuridicaedita.xhtml"
+                    />
+                </p:column>
+            </p:dataTable>
+            <p:commandButton style="background-color: #1c75bc" value="Nova Pessoa Jurídica" actionListener="#{pessoaJuridicaControle.novo()}" action="pessoajuridicaedita"/>
+            <p:commandButton style="background-color: #FFFFFF" value="Voltar" immediate="true" action="/index.xhtml" ajax="false"/>
+        </h:form>
+    </ui:define>
+</ui:composition>
+</html>
+

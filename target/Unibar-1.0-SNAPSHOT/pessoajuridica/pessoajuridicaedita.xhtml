@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition template="/index.xhtml">
+    <ui:define name="body">
+        <h3 align="center">Cadastro de Pessoa Jurídica</h3>
+        <h:form>
+            <p:growl autoUpdate="true"/>
+
+            <p:panelGrid columns="4" id="painel">
+                Nome Fantasia:<p:inputText value="#{pessoaJuridicaControle.pessoaJuridica.nome}" required="true" requiredMessage="O nome é obrigatório!"/>
+                Razão Social:<p:inputText value="#{pessoaJuridicaControle.pessoaJuridica.razaoSocial}" required="true" requiredMessage="A razão social é obrigatória!"/>
+
+                <p:outputLabel value="CNPJ:"/>
+                <p:inputMask value="#{pessoaJuridicaControle.pessoaJuridica.cnpj}"
+                             mask="99.999.999/9999-99"
+                             required="true"
+                             size="25"
+                             id="cnpj"
+                />
+
+                Telefone:<p:inputMask value="#{pessoaJuridicaControle.pessoaJuridica.telefone}"
+                                      mask="(99) 9999-9999"
+            />
+
+                Celular:<p:inputMask value="#{pessoaJuridicaControle.pessoaJuridica.celular}"
+                                     mask="(99) 99999-9999"
+            />
+
+                E-mail:<p:inputText value="#{pessoaJuridicaControle.pessoaJuridica.email}"/>
+
+                <p:outputLabel value="IE:"/>
+                <p:inputText value="#{pessoaJuridicaControle.pessoaJuridica.ie}"
+                             size="25"/>
+
+                Endereco:<p:inputText value="#{pessoaJuridicaControle.pessoaJuridica.endereco}"/>
+                Numero:<p:inputText value="#{pessoaJuridicaControle.pessoaJuridica.numero}"/>
+                Complemento:<p:inputText value="#{pessoaJuridicaControle.pessoaJuridica.complemento}"/>
+                Bairro:<p:inputText value="#{pessoaJuridicaControle.pessoaJuridica.bairro}"/>
+                Cep:<p:inputMask value="#{pessoaJuridicaControle.pessoaJuridica.cep}"
+                                 mask="99.999-999"/>
+
+                Cidade:<p:autoComplete value="#{pessoaJuridicaControle.pessoaJuridica.cidade}"
+                                       completeMethod="#{pessoaJuridicaControle.listaFiltrando}"
+                                       var="cid"
+                                       itemLabel="#{cid.nome}"
+                                       itemValue="#{cid}"
+                                       forceSelection="true"
+                                       converter="#{pessoaJuridicaControle.converterCidade}"/>
+            </p:panelGrid>
+            <p:panelGrid class="2">
+                <p:commandButton style="background-color: darkgreen" value="Salvar" actionListener="#{pessoaJuridicaControle.salvar()}" action="pessoajuridicalista" ajax="false"/>
+                <p:commandButton style="background-color: #FFFFFF" value="Voltar" action="pessoajuridicalista" immediate="true" ajax="false"/>
+            </p:panelGrid>
+        </h:form>
+    </ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition template="/index.xhtml">
+    <ui:define name="body">
+        <h1 align="center">Movimento de Baixa de Contas a Pagar</h1>
+        <h:form>
+            <p:growl/>
+            <p:panel header="Conta a pagar">
+                <p:panelGrid columns="2">
+                    Vencimento:<p:outputLabel value="#{contasPagarControle.contasPagar.dataVencimento}">
+                    <f:convertDateTime pattern="dd/MM/yyyy" locale="pt_BR"/>
+                </p:outputLabel>
+                    Fornecedor:<p:outputLabel value="#{contasPagarControle.contasPagar.pessoaJuridica.nome}"/>
+                    Parcela:<p:outputLabel value="#{contasPagarControle.contasPagar.numParcelas}"/>
+                    Descrição:<p:outputLabel value="#{contasPagarControle.contasPagar.descricao}"/>
+                    Valor:<p:outputLabel value="#{contasPagarControle.contasPagar.valor}"
+                                         converter="#{contasPagarControle.moneyConverter}"
+                                         onkeydown="mascaraMonetaria(this)"/>
+                </p:panelGrid>
+            </p:panel>
+            <p:panelGrid columns="2">
+                Data da baixa:<p:calendar value="#{contasPagarControle.baixaContasPagar.dataBaixa}"
+                                          pattern="dd/MM/yyyy"
+                                          locale="pt_BR"
+                                          size="10"
+            />
+                Valor:*<p:inputText value="#{contasPagarControle.baixaContasPagar.valor}"
+                                    size="10"
+                                    converter="#{contasPagarControle.moneyConverter}"
+                                    onkeydown="mascaraMonetaria(this)"
+                                    required="true"
+                                    requiredMessage="O valor da baixa é obrigatório !"/>
+
+                Conta Bancária:*<p:autoComplete value="#{contasPagarControle.contasPagar.contaBancaria}"
+                                            completeMethod="#{contasPagarControle.getListaContaBancariaFiltrando}"
+                                            var="contabancaria"
+                                            required="true"
+                                            requiredMessage="A conta bancária é obrigatória!"
+                                            itemLabel="#{contabancaria.nomebanco}"
+                                            itemValue="#{contabancaria}"
+                                            converter="#{contasPagarControle.contaBancariaConverter}"
+                                            forceSelection="true"
+                                            size="40"/>
+
+                <p:commandButton style="background-color: darkgreen" value="Baixar"
+                                 actionListener="#{contasPagarControle.baixar()}"
+                                 action="baixacontaspagar"
+                                 ajax="false" />
+            </p:panelGrid>
+            <p:dataTable value="#{contasPagarControle.contasPagar.baixaContasPagar}"
+                         var="b">
+                <p:column>
+                    <p:outputLabel value="#{b.dataBaixa}">
+                        <f:convertDateTime pattern="dd/MM/yyyy" locale="pt_BR"/>
+                    </p:outputLabel>
+                </p:column>
+                <p:column>
+                    <p:outputLabel value="#{b.valor}"
+                                   converter="#{contasPagarControle.moneyConverter}"/>
+                </p:column>
+                <p:column>
+                    <p:commandButton icon="ui-icon-closethick"
+                                     ajax="false"
+                                     immediate="true"
+                                     action="baixacontaspagar.xhtml"
+                                     actionListener="#{contasPagarControle.removerBaixa(b)}"/>
+                </p:column>
+            </p:dataTable>
+            <p:panelGrid columns="2">
+                <p:outputLabel value="Valor Pago: "/><p:outputLabel value="#{contasPagarControle.contasPagar.valorPago}"
+                                                                       style="color: #{contasPagarControle.corValor}"
+                                                                       converter="#{contasPagarControle.moneyConverter}"
+                                                                       onkeydown="mascaraMonetaria(this)"/>
+                <p:commandButton style="background-color: darkgreen" value="Salvar"
+                                 actionListener="#{contasPagarControle.salvar()}"
+                                 action="contaspagarlista"
+                                 ajax="false" />
+
+                <p:commandButton style="background-color: #ffffff" value="Voltar"
+                                 immediate="true"
+                                 action="contaspagarlista"
+                                 ajax="false" />
+            </p:panelGrid>
+
+        </h:form>
+    </ui:define>
+</ui:composition>
+</html>

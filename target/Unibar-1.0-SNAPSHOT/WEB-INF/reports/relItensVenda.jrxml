@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relItensVenda" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d0850648-3562-4c7f-a535-7b6661a6726b">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MySQL"/>
+	<parameter name="vendaId" class="java.lang.Long"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+`ItensVenda`.id as itensvenda_id,
+    `ItensVenda`.venda_id AS venda_id,
+  `Produto`.nome AS Produto,
+	`ItensVenda`.quantidade AS quantidade,
+	`ItensVenda`.valor AS valor,
+	ItensVenda.valor * ItensVenda.quantidade AS subtotal
+FROM `Produto`
+	INNER JOIN `ItensVenda` ON 
+	 `Produto`.id = `ItensVenda`.`Produto_id`
+	 where  
+	  `ItensVenda`.venda_id = $P{vendaId}]]>
+	</queryString>
+	<field name="Produto" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Produto"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Produto"/>
+	</field>
+	<field name="quantidade" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="quantidade"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="ItensVenda"/>
+	</field>
+	<field name="valor" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="valor"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="ItensVenda"/>
+	</field>
+	<field name="subtotal" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="subtotal"/>
+	</field>
+	<background>
+		<band/>
+	</background>
+	<detail>
+		<band height="20">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="77bb872e-aaf1-4d80-8217-a85c12a11f0c"/>
+			</line>
+			<textField textAdjust="StretchHeight">
+				<reportElement x="0" y="0" width="138" height="20" uuid="f12d6953-a301-43cb-bfe7-638f3d8b8225">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="71e16040-ed66-4779-9c15-cd70688426df"/>
+				</reportElement>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Produto}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight">
+				<reportElement x="138" y="0" width="138" height="20" uuid="4a89c3f7-6390-4cdb-88ed-1e7252b3bb00">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="57f2c74a-3ab8-412e-8670-2b3d05bef838"/>
+				</reportElement>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{quantidade}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight">
+				<reportElement x="276" y="0" width="138" height="20" uuid="5e646945-f38e-4be7-86d6-ef1b479f3abd">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="23b31e31-68a9-4696-9595-e13c5b07d446"/>
+				</reportElement>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valor}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight">
+				<reportElement x="414" y="0" width="138" height="20" uuid="2204ee1c-d4ad-4625-b396-d14c6264038d">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="27dfcc22-8082-471d-9864-22fca8506869"/>
+				</reportElement>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{subtotal}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

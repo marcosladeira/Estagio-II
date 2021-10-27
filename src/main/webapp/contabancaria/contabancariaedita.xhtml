@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition template="/index.xhtml">
+    <ui:define name="body">
+        <h1 align="center">Cadastro de Conta Bancária</h1>
+        <h:form>
+            <p:growl />
+            <p:panelGrid columns="2">
+
+                Nome do Banco:*<p:inputText value="#{contaBancariaControle.contaBancaria.nomebanco}"
+                                    required="true"
+                                    requiredMessage="O nome do banco é obrigatório!"
+                                    size="30"
+                                    id="nomebanco"/>
+                Agência:*<p:inputText value="#{contaBancariaControle.contaBancaria.agencia}"
+                                   required="true"
+                                   requiredMessage="A agência é obrigatória!"
+                                   size="20"
+                                   id="agencia"/>
+                Número da Conta*<p:inputText value="#{contaBancariaControle.contaBancaria.numConta}"
+                                             required="true"
+                                             requiredMessage="O número da conta é obrigatório!"
+                                             size="20"
+                                             id="numeroconta"/>
+                Tipo*<p:inputText value="#{contaBancariaControle.contaBancaria.tipo}"
+                                             required="true"
+                                             requiredMessage="O tipo da conta é obrigatório!"
+                                             size="20"
+                                             id="tipo"/>
+                Titular*<p:inputText value="#{contaBancariaControle.contaBancaria.titular}"
+                                             required="true"
+                                             requiredMessage="O titular da conta é obrigatório!"
+                                             size="20"
+                                             id="titular"/>
+
+
+                <p:commandButton style="background-color: darkgreen" value="Salvar"
+                                 actionListener="#{contaBancariaControle.salvar}"
+                                 action="contabancarialista"
+                                 ajax="false" />
+                <p:commandButton style="background-color: #ffffff" value="Voltar"
+                                 immediate="true"
+                                 action="contabancarialista"
+                                 ajax="false" />
+            </p:panelGrid>
+        </h:form>
+    </ui:define>
+</ui:composition>
+</html>

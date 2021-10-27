@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relMovimentacaoDiaria" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d6b2d0d0-aff3-491b-8099-61b3d24c0802">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MySQL"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="0"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="1000"/>
+	<parameter name="dataInicio" class="java.util.Date"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT 
+	COALESCE(( SELECT sum(recebe.valor) as vl_recebido FROM BaixaContasReceber AS recebe WHERE recebe.dataBaixa = $P{dataInicio} ),0) AS entrada
+,	COALESCE((  SELECT sum(baixa.valor) AS vl_pago FROM BaixaContasPagar AS baixa WHERE baixa.dataBaixa = $P{dataInicio} ), 0)  AS saida
+,(   COALESCE(( SELECT sum(recebe.valor) as vl_recebido FROM BaixaContasReceber AS recebe WHERE recebe.dataBaixa = $P{dataInicio}  ),0) -
+	COALESCE((  SELECT sum(baixa.valor) AS vl_pago FROM BaixaContasPagar AS baixa WHERE baixa.dataBaixa = $P{dataInicio} ), 0) 
+) AS saldo_do_dia]]>
+	</queryString>
+	<field name="entrada" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="entrada"/>
+	</field>
+	<field name="saida" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="saida"/>
+	</field>
+	<field name="saldo_do_dia" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="saldo_do_dia"/>
+	</field>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="48">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="63" backcolor="#FF0000" uuid="00cfb484-c4cd-4dae-b034-36789dcbdef6"/>
+				<staticText>
+					<reportElement x="20" y="20" width="560" height="43" forecolor="#FFFFFF" uuid="99bfcceb-1013-454c-9bed-26e9117ea397"/>
+					<textElement>
+						<font size="29" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Relatório de Movimentação Diária]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="fed74a75-f073-4163-aeb9-38e9911bb803"/>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="185" height="20" forecolor="#FF0000" backcolor="#E6E6E6" uuid="71c46902-0929-40a6-9a9c-c8581e559908">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="84952129-ef5a-4f98-aae0-cc39ad34a7f7"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Entrada de Dinheiro]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="185" y="0" width="185" height="20" forecolor="#FF0000" backcolor="#E6E6E6" uuid="7f3f41ee-288f-4221-ad24-78a4d4b68993">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0d8e1d97-417b-424b-9e4a-8e3df22bf1cf"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Saída de Dinheiro]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="370" y="0" width="185" height="20" forecolor="#FF0000" backcolor="#E6E6E6" uuid="5d94e31d-c3c0-438b-9284-cbe7a261a15e">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="89494998-261c-4a8f-987b-3fb903ee24a2"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Saldo do Dia]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="b357de4c-0ea6-4e51-8469-8d0bc807f04a"/>
+			</line>
+			<textField textAdjust="StretchHeight">
+				<reportElement x="0" y="0" width="185" height="20" uuid="1b2f5217-a29f-45b6-9c13-fe28b80055d5">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="84952129-ef5a-4f98-aae0-cc39ad34a7f7"/>
+				</reportElement>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{entrada}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight">
+				<reportElement x="185" y="0" width="185" height="20" uuid="b679b9ea-8b48-40c2-b692-9243e283ca24">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0d8e1d97-417b-424b-9e4a-8e3df22bf1cf"/>
+				</reportElement>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{saida}]]></textFieldExpression>
+			</textField>
+			<textField textAdjust="StretchHeight">
+				<reportElement x="370" y="0" width="185" height="20" uuid="4e779042-b8a7-4a67-a6e1-198fb1c8041a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="89494998-261c-4a8f-987b-3fb903ee24a2"/>
+				</reportElement>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{saldo_do_dia}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="cdd6b810-7e2d-4136-a59b-b5d09ee323a9"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="17e250ab-a326-4c56-a3ba-4b621572a68b"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="032ccc70-0c7c-40bd-8893-bbcceefd7615"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

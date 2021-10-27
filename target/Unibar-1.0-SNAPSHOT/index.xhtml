@@ -1,0 +1,126 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+<h:head>
+    <h:outputScript library="js" name="/mascaraMonetaria/Parsers.js" />
+    <h:outputScript library="js" name="/mascaraMonetaria/JavaScriptUtil.js" />
+    <h:outputScript library="js" name="/mascaraMonetaria/InputMask.js" />
+    <script language="JavaScript" type="">
+
+        function mascaraMonetaria(arg) {
+            //Set up the NumberMasks
+            var separadorDecimal = ",";
+            var separadorMilhar = ".";
+
+            var formato = new NumberParser(2, separadorDecimal, separadorMilhar, true);
+            formato.currencySymbol = "R$";
+            formato.useCurrency = true;
+            formato.allowNegative = false;
+            formato.currencyInside = true;
+
+            if (arg.className.indexOf('mascaraMonetaria') == -1) {
+                var mascaraMonetariaFinal = new NumberMask(formato, arg, 20);
+                mascaraMonetariaFinal.leftToRight = true;
+                arg.setAttribute('autocomplete', 'off');
+                arg.className += ' mascaraMonetaria';
+            }
+        }
+    </script>
+    <title>Unibar Universitário</title>
+</h:head>
+<h:body>
+    <p:layout fullPage="true">
+
+        <p:layoutUnit position="center" >
+
+            <h:form>
+                <p:growl id="menu"/>
+                <p:menubar >
+                    <p:submenu label="Cadastros" icon="ui-icon-person" >
+                        <p:menuitem rendered="#{loginControle.validaMenu('ESTADO')}" value="Estado"  ajax="false" action="/estado/estadolista" />
+                        <p:menuitem rendered="#{loginControle.validaMenu('CIDADE')}" value="Cidade" ajax="false" action="/cidade/cidadelista" />
+                        <p:menuitem rendered="#{loginControle.validaMenu('MESA')}" value="Mesa" ajax="false" action="/mesa/mesalista"/>
+                        <p:menuitem rendered="#{loginControle.validaMenu('CLIENTE')}" value="Cliente" ajax="false" action="/cliente/clientelista"/>
+                        <p:menuitem rendered="#{loginControle.validaMenu('PESSOAFISICA')}" value="Pessoa Física" ajax="false" action="/pessoafisica/pessoafisicalista"/>
+                        <p:menuitem rendered="#{loginControle.validaMenu('PESSOAJURIDICA')}" value="Pessoa Jurídica" ajax="false" action="/pessoajuridica/pessoajuridicalista"/>
+                        <p:menuitem rendered="#{loginControle.validaMenu('FUNCIONARIO')}" value="Funcionário" ajax="false" action="/funcionario/funcionariolista"/>
+                        <p:menuitem rendered="#{loginControle.validaMenu('CONTABANCARIA')}" value="Conta Bancária" ajax="false" action="/contabancaria/contabancarialista"/>
+                        <p:menuitem rendered="#{loginControle.validaMenu('FORMAPAGAMENTO')}" value="Forma de Pagamento" ajax="false" action="/formapagamento/formapagamentolista"/>
+                        <p:menuitem rendered="#{loginControle.validaMenu('GRUPOPRODUTO')}" value="Grupo de Produto" ajax="false" action="/grupoproduto/grupoprodutolista"/>
+                        <p:menuitem rendered="#{loginControle.validaMenu('PRODUTO')}" value="Produto" ajax="false" action="/produto/produtolista"/>
+                        <p:menuitem rendered="#{loginControle.validaMenu('USUARIO')}" value="Usuário" ajax="false" action="/usuario/usuariolista"/>
+                        <p:menuitem rendered="#{loginControle.validaMenu('PERFIL')}" value="Perfil" ajax="false" action="/perfil/perfillista"/>
+                    </p:submenu>
+                    <p:submenu label="Movimentos" icon="fa fa-dollar">
+                        <p:menuitem rendered="#{loginControle.validaMenu('COMPRA')}" value="Compra" ajax="false" action="/compra/compralista"/>
+                        <p:submenu rendered="#{loginControle.validaMenu('VENDA')}" label="Venda" >
+                            <p:menuitem value="Lista de Vendas" ajax="false" action="/venda/vendalista"/>
+                            <p:menuitem value="Venda Mesas" ajax="false" action="/venda/vendamesas"/>
+                        </p:submenu>
+                        <p:menuitem rendered="#{loginControle.validaMenu('CONTASPAGAR')}" value="Contas a Pagar" ajax="false" action="/contaspagar/contaspagarlista"/>
+                        <p:menuitem rendered="#{loginControle.validaMenu('CONTASRECEBER')}" value="Contas a Receber" ajax="false" action="/contasreceber/contasreceberlista"/>
+                        <p:menuitem rendered="#{loginControle.validaMenu('AJUSTEESTOQUE')}" value="Ajuste de Estoque" ajax="false" action="/ajusteestoque/ajusteestoquelista"/>
+                    </p:submenu>
+                    <p:submenu label="Relatórios" icon="ui-icon-document">
+                        <p:submenu label="Relatórios Cadastrais" rendered="#{loginControle.validaMenu('RELCADASTRAIS')}">
+                            <p:menuitem  value="Estados" ajax="false" action="/relatorios/relestado"/>
+                            <p:menuitem value="Cidades" ajax="false" action="/relatorios/relcidade"/>
+                            <p:menuitem value="Mesas" ajax="false" action="/relatorios/relmesa"/>
+                            <p:menuitem value="Pessoas Físicas" ajax="false" action="/relatorios/relpessoafisica"/>
+                            <p:menuitem value="Pessoas Jurídicas" ajax="false" action="/relatorios/relpessoajuridica"/>
+                            <p:menuitem value="Funcionários" ajax="false" action="/relatorios/relfuncionario"/>
+                            <p:menuitem value="Contas Bancárias" ajax="false" action="/relatorios/relcontabancaria"/>
+                            <p:menuitem value="Formas de Pagamento" ajax="false" action="/relatorios/relformapagamento"/>
+                            <p:menuitem  value="Grupos de Produto" ajax="false" action="/relatorios/relgrupoproduto"/>
+                            <p:menuitem  value="Produtos" ajax="false" action="/relatorios/relproduto"/>
+                            <p:menuitem value="Usuários" ajax="false" action="/relatorios/relusuario"/>
+                            <p:menuitem value="Perfis" ajax="false" action="/relatorios/relperfil"/>
+                        </p:submenu>
+                        <p:submenu label="Relatórios Gerenciais" rendered="#{loginControle.validaMenu('RELGERENCIAIS')}">
+                            <p:menuitem  value="Fidelidade de Clientes" ajax="false" action="/relatorios/relfidelidadeclientes"/>
+                            <p:menuitem  value="Produtos mais vendidos" ajax="false" action="/relatorios/relprodutosmaisvendidos"/>
+                            <p:menuitem  value="Produtos menos vendidos" ajax="false" action="/relatorios/relprodutosmenosvendidos"/>
+                            <p:menuitem  value="Produtos mais comprados" ajax="false" action="/relatorios/relprodutosmaiscomprados"/>
+                            <p:menuitem  value="Produtos menos comprados" ajax="false" action="/relatorios/relprodutosmenoscomprados"/>
+                            <p:menuitem  value="Produtos com menor estoque" ajax="false" action="/relatorios/relprodutosmenorestoque"/>
+                            <p:menuitem value="Produtos Abaixo do Estoque Mínimo" ajax="false" action="/relatorios/relprodutosabaixoestoqueminimo"/>
+                            <p:menuitem  value="Compras" ajax="false" action="/relatorios/relcompras"/>
+                            <p:menuitem  value="Vendas" ajax="false" action="/relatorios/relvendas"/>
+                            <p:menuitem  value="Contas a Pagar" ajax="false" action="/relatorios/relcontaspagar"/>
+                            <p:menuitem  value="Contas a Receber" ajax="false" action="/relatorios/relcontasreceber"/>
+                            <p:menuitem value="Movimentação Diária" ajax="false" action="/relatorios/relmovimentacaodiaria"/>
+                        </p:submenu>
+                    </p:submenu>
+
+                    <p:menuitem value="Backup" rendered="#{loginControle.validaMenu('BACKUP')}" immediate="true" icon="fa fa-fw fa-cog" ajax="false" action="/backup/backupedita"/>
+
+                    <p:submenu label="Ajuda" rendered="#{loginControle.validaMenu('AJUDA')}" icon="ui-icon-help">
+                        <p:menuitem value="Cadastrar uma Pessoa" ajax="false" action="/ajuda/cadastrarPessoa"/>
+                        <p:menuitem value="Realizar uma Compra" ajax="false" action="/ajuda/realizarCompra"/>
+                        <p:menuitem value="Realizar uma Venda" ajax="false" action="/ajuda/realizarVenda"/>
+                        <p:menuitem value="Emitir um Relatório Cadastral" ajax="false" action="/ajuda/emitirRelatorioCadastral"/>
+                        <p:menuitem value="Emitir um Relatório Gerencial" ajax="false" action="/ajuda/emitirRelatorioGerencial"/>
+                    </p:submenu>
+
+                    <p:menuitem value="Sair" action="#{loginControle.logoff()}" icon="ui-icon-power" ajax="false"/>
+                </p:menubar>
+            </h:form>
+
+            <ui:insert id="corpo" name="body">
+                <h:graphicImage library="images" name="Unibar.jpg" width="1437" height="580"/>
+                <p align="center"> Todos os Direitos reservados @2020 </p>
+            </ui:insert>
+
+        </p:layoutUnit>
+
+    </p:layout>
+
+</h:body>
+</html>
+

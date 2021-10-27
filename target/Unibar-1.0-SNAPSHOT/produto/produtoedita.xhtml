@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<ui:composition template="/index.xhtml">
+    <ui:define name="body">
+        <h1 align="center">Cadastro de Produtos</h1>
+        <h:form>
+            <p:growl />
+            <p:panelGrid columns="2">
+                Nome:*<p:inputText value="#{produtoControle.produto.nome}"
+                                   required="true"
+                                   requiredMessage="O nome é obrigatório!"
+                                   size="34"
+                                   id="nome"/>
+
+                Estoque Mínimo*<p:inputText value="#{produtoControle.produto.estoqueMinimo}"
+                                             required="true"
+                                             requiredMessage="O estoque mínimo é obrigatório!"
+                                             size="20"
+                                             id="estoqueMinimo"/>
+
+                Valor da Compra:*<p:inputText value="#{produtoControle.produto.valorCompra}"
+                                              required="true"
+                                              requiredMessage="O valor da compra é obrigatório!"
+                                              size="10"
+                                              id="valorCompra"
+                                              onkeydown="mascaraMonetaria(this)"
+                                              converter="#{produtoControle.moneyConverter}"/>
+                Valor da Venda:*<p:inputText value="#{produtoControle.produto.valorVenda}"
+                                             required="true"
+                                             requiredMessage="O valor da venda é obrigatório!"
+                                             size="10"
+                                             id="valorVenda"
+                                             onkeydown="mascaraMonetaria(this)"
+                                             converter="#{produtoControle.moneyConverter}"/>
+
+                Grupo Produto:*<p:autoComplete value="#{produtoControle.produto.grupoProduto}"
+                                               completeMethod="#{produtoControle.getListaFiltrando}"
+                                               var="gp"
+                                               required="true"
+                                               requiredMessage="O grupo de produto é obrigatório!"
+                                               itemLabel="#{gp.nome}"
+                                               itemValue="#{gp}"
+                                               forceSelection="true"
+                                               converter="#{produtoControle.grupoProdutoConverter}"
+                                               size="30"/>
+
+                <p:commandButton style="background-color: darkgreen" value="Salvar"
+                                 actionListener="#{produtoControle.salvar()}"
+                                 action="produtolista"
+                                 ajax="false" />
+                <p:commandButton style="background-color: #FFFFFF" value="Voltar"
+                                 immediate="true"
+                                 action="produtolista"
+                                 ajax="false" />
+            </p:panelGrid>
+        </h:form>
+    </ui:define>
+</ui:composition>
+</html>

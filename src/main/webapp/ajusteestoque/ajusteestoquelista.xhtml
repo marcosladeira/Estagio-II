@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition template="/index.xhtml">
+    <ui:define name="body">
+        <h3 align="center">Movimento de Ajuste de Estoque</h3>
+        <h:form id="mensage">
+            <p:dataTable value="#{ajusteEstoqueControle.listaTodos()}" var="e"
+                         paginator="true" rows="5">
+                <p:column headerText="Data da AjusteEstoque" filterBy="#{e.dataAjuste}" filterMatchMode="contains">
+                    <p:outputLabel value="#{e.dataAjuste}">
+                        <f:convertDateTime pattern="dd/MM/yyyy" locale="pt_BR"/>
+                    </p:outputLabel>
+                </p:column>
+                <p:column headerText="Motivo" filterBy="#{e.motivo}" filterMatchMode="contains">
+                    #{e.motivo}
+                </p:column>
+                <p:column headerText="Operações">
+                    <p:commandButton icon="ui-icon-closethick" actionListener="#{ajusteEstoqueControle.excluir(e)}" update="mensage" immediate="true" >
+                        <p:confirm header="Confirmação" message="Deseja excluir?" icon="ui-icon-alert" />
+                    </p:commandButton>
+                    <p:confirmDialog global="true" widgetVar="dlg3" height="" style="background-position:center ">
+                        <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"  ajax="false" />
+                        <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" ajax="true"/>
+                    </p:confirmDialog>
+
+                    <p:commandButton icon="ui-icon-pencil" actionListener="#{ajusteEstoqueControle.editar(e)}" action="ajusteestoqueedita" ajax="false"/>
+                </p:column>
+            </p:dataTable>
+            <p:commandButton style="background-color: #1c75bc" value="Novo" actionListener="#{ajusteEstoqueControle.novo()}" action="ajusteestoqueedita" ajax="false"/>
+            <p:commandButton style="background-color: #FFFFFF"  value="Voltar" action="/index"/>
+        </h:form>
+    </ui:define>
+</ui:composition>
+</html>

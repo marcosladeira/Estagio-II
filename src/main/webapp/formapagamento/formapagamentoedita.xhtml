@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:pe="http://java.sun.com/jsf/html">
+<ui:composition template="/index.xhtml">
+    <ui:define name="body">
+        <h1 align="center">Cadastro de Forma de Pagamento</h1>
+        <h:form>
+            <p:growl />
+            <p:panelGrid columns="2">
+
+                Nome:*<p:inputText value="#{formaPagamentoControle.formaPagamento.nome}"
+                                            required="true"
+                                            requiredMessage="O nome é obrigatório!"
+                                            size="30"
+                                            id="nome"/>
+                Parcelas:*<p:inputText value="#{formaPagamentoControle.formaPagamento.numParcelas}"
+                                      required="true"
+                                      requiredMessage="As parcelas são obrigatórias!"
+                                      size="20"
+                                      id="numparcelas"/>
+
+                <p:commandButton style="background-color: darkgreen" value="Salvar"
+                                 actionListener="#{formaPagamentoControle.salvar}"
+                                 action="formapagamentolista"
+                                 ajax="false" />
+                <p:commandButton style="background-color: #FFFFFF" value="Voltar"
+                                 immediate="true"
+                                 action="formapagamentolista"
+                                 ajax="false" />
+            </p:panelGrid>
+        </h:form>
+    </ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition template="/index.xhtml">
+    <ui:define name="body">
+        <h3 align="center">Cadastro de Pessoa Física</h3>
+        <h:form>
+            <p:growl autoUpdate="true"/>
+            <p:panelGrid columns="4">
+
+                Nome:<p:inputText value="#{pessoaFisicaControle.pessoaFisica.nome}" required="true" requiredMessage="O nome é obrigatório!"/>
+                CPF:<p:inputMask value="#{pessoaFisicaControle.pessoaFisica.cpf}"
+                                 mask="999.999.999-99"
+                                 required="true"
+                                 requiredMessage="O CPF é obrigatório!"/>
+                RG:<p:inputText value="#{pessoaFisicaControle.pessoaFisica.rg}"/>
+                Telefone:<p:inputMask value="#{pessoaFisicaControle.pessoaFisica.telefone}"
+                                      mask="(99) 9999-9999"
+            />
+                Celular:<p:inputMask value="#{pessoaFisicaControle.pessoaFisica.celular}"
+                                     mask="(99) 99999-9999"
+            />
+                E-mail:<p:inputText value="#{pessoaFisicaControle.pessoaFisica.email}"/>
+
+
+                Endereco:<p:inputText value="#{pessoaFisicaControle.pessoaFisica.endereco}"/>
+                Numero:<p:inputText value="#{pessoaFisicaControle.pessoaFisica.numero}"/>
+                Complemento:<p:inputText value="#{pessoaFisicaControle.pessoaFisica.complemento}"/>
+                Bairro:<p:inputText value="#{pessoaFisicaControle.pessoaFisica.bairro}"/>
+                Cep:<p:inputMask value="#{pessoaFisicaControle.pessoaFisica.cep}"
+                                 mask="99.999-999"/>
+
+                Cidade:<p:autoComplete value="#{pessoaFisicaControle.pessoaFisica.cidade}"
+
+                                       completeMethod="#{pessoaFisicaControle.listaFiltrando}"
+                                       var="cid"
+                                       itemLabel="#{cid.nome}"
+                                       itemValue="#{cid}"
+                                       forceSelection="true"
+                                       converter="#{pessoaFisicaControle.converterCidade}"/>
+            </p:panelGrid>
+            <p:commandButton style="background-color: darkgreen" value="Salvar" actionListener="#{pessoaFisicaControle.salvar()}" action="pessoafisicalista" ajax="false"/>
+            <p:commandButton style="background-color: #FFFFFF" value="Voltar" action="pessoafisicalista" immediate="true" ajax="false"/>
+
+        </h:form>
+    </ui:define>
+</ui:composition>
+</html>

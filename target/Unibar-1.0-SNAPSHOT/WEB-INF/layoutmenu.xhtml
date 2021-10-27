@@ -1,0 +1,65 @@
+
+<ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:pm="http://primefaces.org/adamantium">
+
+    <div class="layout-menu-cover-top Animated05" id="layout-menu-cover">
+        <h:form id="menuform">
+            <pm:menu>
+                <p:menuitem id="rm_dashboard" value=" Dashboard"
+                            icon="icon-feather" outcome="/app/index.xhtml" rendered="true"/>
+
+                <p:submenu label="Cadastros" icon="fa fa-columns" rendered="true">
+                    <p:menuitem  id="estado" value="Estado" action="/app/estado/listaEstado" ajax="false"/>
+                    <p:menuitem id="cidade" value="Cidade" action="/app/cidade/listaCidade" ajax="false"/>
+                    <p:menuitem id="produto" value="Produto" action="/app/produto/listaProduto" ajax="false"/>
+                    <p:menuitem  id="servico" value="Serviço" action="/app/servico/listaServico" ajax="false"/>
+                    <p:menuitem id="pessoa" value="Cliente" action="/app/pessoa/listaPessoa" ajax="false"/>
+                    <p:menuitem id="funcionario" value="Funcionario" action="/app/funcionario/listaFuncionario" ajax="false"/>
+                    <p:menuitem  id="fornecedor" value="Fornecedor" action="/app/fornecedor/listaFornecedor" ajax="false"/>
+                    <p:menuitem  id="usuario" value="Usuario" action="/app/usuario/listaUsuario" ajax="false"/>
+                    <p:menuitem  id="perfil" value="Perfil" action="/app/perfil/listaPerfil" ajax="false"/>
+                </p:submenu>
+
+                <p:submenu label="Movimentos" icon="fa fa-dollar" rendered="true">
+                    <p:menuitem  id="agenda" value="Agenda" action="/app/agenda/listaAgenda" ajax="false"/>
+                    <p:menuitem  id="caixa" value="Caixa" action="/app/caixa/listaCaixa" ajax="false"/>
+                    <p:menuitem  id="compra" value="Compra" action="/app/compra/listaCompra" ajax="false"/>
+                    <p:menuitem  id="contasPagar" value="Contas a Pagar" action="/app/contasPagar/listaContasPagar" ajax="false"/>
+                    <p:menuitem  id="contasReceber" value="Contas a Receber" action="/app/contasReceber/listaContasReceber" ajax="false"/>
+                    <p:menuitem  id="ordemServico" value="Ordem de Serviço" action="/app/ordemServico/listaOrdemServico" ajax="false"/>
+                    <p:menuitem  id="ajusteEstoque" value="Ajuste de Estoque" action="/app/ajusteEstoque/listaAjusteEstoque" ajax="false"/>
+
+                </p:submenu>
+
+                <p:submenu label="Relatórios" icon="fa fa-file-pdf-o" rendered="true">
+                    <p:menuitem  id="relatorios" value="Relatórios Cadastrais" action="/app/relatorios/relatorio" ajax="false"/>
+
+                    <p:submenu label="Relatórios Gerenciais" rendered="true">
+                        <p:menuitem id="relatorioCompra" value="Compras por período" action="/app/relatorios/relatorioCompra" ajax="false"/>
+                        <p:menuitem id="elatorioContasPagar" value="Contas a pagar por período" action="/app/relatorios/relatorioContasPagar" ajax="false"/>
+                        <p:menuitem id="relatorioContasReceber" value="Contas a receber por período" action="/app/relatorios/relatorioContasReceber" ajax="false"/>
+                        <p:menuitem id="relatorioFaturamento" value="Faturamento por período" action="/app/relatorios/relatorioFaturamento" ajax="false"/>
+                        <p:menuitem id="relatorioOrdemServico" value="Ordens de serviço por período" action="/app/relatorios/relatorioOrdemServico" ajax="false"/>
+                        <p:menuitem id="relatorioProdMaisComprados" value="Produtos mais comprados" action="/app/relatorios/relatorioProdMaisComprados" ajax="false"/>
+                    </p:submenu>
+                </p:submenu>
+
+                <p:menuitem id="backup" value="Backup" action="/app/backup/form" ajax="false"/>
+
+                <p:submenu label="Ajuda" rendered="true">
+                        <p:menuitem value="Cadastrar Cliente" id="ajudaCadastrarCliente" action="/app/ajuda/cadastrarCliente" ajax="false"/>
+                        <p:menuitem value="Realizar Ordem de Serviço" id="ajudaRealizarOrdemServico" action="/app/ajuda/realizarOrdemServico" ajax="false"/>
+                        <p:menuitem value="Realizar Relatorio Cadastral" id="ajudaRealizarRelatorioCadastral" action="/app/ajuda/realizarRelatorioCadastral" ajax="false"/>
+                        <p:menuitem value="Realizar Relatorio Gerencial" id="ajudaRealizarRelatorioGerencial" action="/app/ajuda/realizarRelatorioGerencial" ajax="false"/>
+                    </p:submenu>
+            </pm:menu>
+        </h:form>
+
+    </div>
+
+</ui:composition>

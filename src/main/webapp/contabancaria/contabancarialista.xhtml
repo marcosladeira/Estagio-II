@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<ui:composition template="/index.xhtml">
+    <ui:define name="body">
+        <h1 align="center">Cadastro de Contas Bancárias</h1>
+        <h:form>
+            <p:dataTable value="#{contaBancariaControle.lista}" var="obj"
+                         paginator="true" rows="5"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="2,5,10,15"
+            >
+                <p:column headerText="Código" filterBy="#{obj.id}" filterMatchMode="contains">
+                    <h:outputText value="#{obj.id}"/>
+                </p:column>
+                <p:column headerText="Nome do Banco" filterBy="#{obj.nomebanco}" filterMatchMode="contains">
+                    <h:outputText value="#{obj.nomebanco}"/>
+                </p:column>
+                <p:column headerText="Agência" filterBy="#{obj.agencia}" filterMatchMode="contains">
+                    <h:outputText value="#{obj.agencia}"/>
+                </p:column>
+                <p:column headerText="Número da Conta" filterBy="#{obj.numConta}" filterMatchMode="contains">
+                    <h:outputText value="#{obj.numConta}"/>
+                </p:column>
+                <p:column headerText="Tipo" filterBy="#{obj.tipo}" filterMatchMode="contains">
+                    <h:outputText value="#{obj.tipo}"/>
+                </p:column>
+                <p:column headerText="Titular" filterBy="#{obj.titular}" filterMatchMode="contains">
+                    <h:outputText value="#{obj.titular}"/>
+                </p:column>
+                <p:column headerText="Saldo" filterBy="#{obj.saldoConta}" filterMatchMode="contains">
+                    <h:outputText value="#{obj.saldoConta}" converter="#{contaBancariaControle.moneyConverter}"/>
+                </p:column>
+                <p:column headerText="Operações" width="90">
+                    <p:commandButton icon="ui-icon-closethick"
+                                     ajax="false"
+                                     immediate="true"
+                                     action="contabancarialista.xhtml"
+                                     actionListener="#{contaBancariaControle.excluir(obj)}"/>
+                    <p:commandButton icon="ui-icon-pencil"
+                                     ajax="false"
+                                     immediate="true"
+                                     action="contabancariaedita.xhtml"
+                                     actionListener="#{contaBancariaControle.editar(obj)}"/>
+                </p:column>
+            </p:dataTable>
+            <p:commandButton style="background-color: #1c75bc"  value="Nova Conta Bancária" action="contabancariaedita"
+                             actionListener="#{contaBancariaControle.novo()}" ajax="false"/>
+            <p:commandButton style="background-color: #FFFFFF" value="Voltar" immediate="true" action="/index.xhtml" ajax="false"/>
+        </h:form>
+    </ui:define>
+</ui:composition>
+</html>

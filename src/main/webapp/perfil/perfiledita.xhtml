@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="/index.xhtml">
+        <ui:define name="body">
+            <h1 align="center">Cadastro de Perfil</h1>
+            <h:form>
+            <p:growl />
+                <p:panelGrid columns="2">
+                    Nome:*<p:inputText value="#{perfilControle.per.nome}"
+                                      required="true"
+                                      requiredMessage="O nome é obrigatório!"
+                                      size="28"
+                                      id="nome"/>
+                </p:panelGrid>
+                <p:panel header="Permissões">
+                    <p:panelGrid columns="3">
+                        Permissão:<p:selectOneMenu value="#{perfilControle.permissoes.nome}">
+                            <f:selectItem itemLabel="Estado" itemValue="ESTADO"/>
+                            <f:selectItem itemLabel="Cidade" itemValue="CIDADE"/>
+                            <f:selectItem itemLabel="Conta Bancária" itemValue="CONTABANCARIA"/>
+                            <f:selectItem itemLabel="Forma de Pagamento" itemValue="FORMAPAGAMENTO"/>
+                            <f:selectItem itemLabel="Grupo de Produto" itemValue="GRUPOPRODUTO"/>
+                            <f:selectItem itemLabel="Produto" itemValue="PRODUTO"/>
+                            <f:selectItem itemLabel="Perfil" itemValue="PERFIL"/>
+                            <f:selectItem itemLabel="Cliente" itemValue="CLIENTE"/>
+                            <f:selectItem itemLabel="Pessoa Física" itemValue="PESSOAFISICA"/>
+                            <f:selectItem itemLabel="Pessoa Jurídica" itemValue="PESSOAJURIDICA"/>
+                            <f:selectItem itemLabel="Funcionário" itemValue="FUNCIONARIO"/>
+                            <f:selectItem itemLabel="Mesa" itemValue="MESA"/>
+                            <f:selectItem itemLabel="Usuário" itemValue="USUARIO"/>
+                            <f:selectItem itemLabel="Compra" itemValue="COMPRA"/>
+                            <f:selectItem itemLabel="Venda" itemValue="VENDA"/>
+                            <f:selectItem itemLabel="Contas a Pagar" itemValue="CONTASPAGAR"/>
+                            <f:selectItem itemLabel="Contas a Receber" itemValue="CONTASRECEBER"/>
+                            <f:selectItem itemLabel="Ajuste de Estoque" itemValue="AJUSTEESTOQUE"/>
+                            <f:selectItem itemLabel="Relatórios Cadastrais" itemValue="RELCADASTRAIS"/>
+                            <f:selectItem itemLabel="Relatórios Gerenciais" itemValue="RELGERENCIAIS"/>
+                            <f:selectItem itemLabel="Backup" itemValue="BACKUP"/>
+                            <f:selectItem itemLabel="Ajuda" itemValue="AJUDA"/>
+                        </p:selectOneMenu>
+                        <p:commandButton value="Adicionar" ajax="false" action="perfiledita" actionListener="#{perfilControle.adicionar()}"/>
+                    </p:panelGrid>
+                    <p:dataTable value="#{perfilControle.per.permissoes}" var="p">
+                        <p:column headerText="Nome">
+                            #{p.nome}
+                        </p:column>
+                    </p:dataTable>
+
+                </p:panel>
+
+                <p:commandButton style="background-color: darkgreen" value="Salvar"
+                                 actionListener="#{perfilControle.salvar()}"
+                                 action="perfillista"
+                                 ajax="false" />
+                <p:commandButton style="background-color: #FFFFFF" value="Voltar"
+                                 action="perfillista"
+                                 immediate="true"
+                                 ajax="false" />
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
